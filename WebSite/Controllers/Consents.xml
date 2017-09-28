@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="Consents" conflictDetection="overwriteChanges" label="Consents" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"Consents"."ConsentID" "ConsentID"
+	,"Consents"."WOCIDFK" "Wocidfk"
+	,"WOCIDFK"."woc_ClientCIN" "WocidfkWocClientcin"
+	,"WOCIDFKwoc_RequestHHCMAfk"."HHCMAMMISpk" "WocidfkwocRequesthhcmafkhhcmammispk"
+	,"WOCIDFKwoc_TargetHHCMAfk"."HHCMAMMISpk" "WocidfkwocTargethhcmafkhhcmammispk"
+	,"WOCIDFKwoc_CurrentStatusFK"."refwoc_StatusName" "WocidfkwocCurrentstatusfkrefwocStatusname"
+	,"Consents"."ConsentFileName" "ConsentFileName"
+	,"Consents"."ConsentLength" "ConsentLength"
+	,"Consents"."ConsentContentType" "ConsentContentType"
+	,"Consents"."ConsentLoadedDate" "ConsentLoadedDate"
+	,"Consents"."Consent" "Consent"
+from "dbo"."Consents" "Consents"
+	left join "dbo"."WOCLists" "WOCIDFK" on "Consents"."WOCIDFK" = "WOCIDFK"."wocRecIDPK"
+	left join "dbo"."ref_HHCMA" "WOCIDFKwoc_RequestHHCMAfk" on "WOCIDFK"."woc_RequestHHCMAfk" = "WOCIDFKwoc_RequestHHCMAfk"."HHCMAIDPK"
+	left join "dbo"."ref_HHCMA" "WOCIDFKwoc_TargetHHCMAfk" on "WOCIDFK"."woc_TargetHHCMAfk" = "WOCIDFKwoc_TargetHHCMAfk"."HHCMAIDPK"
+	left join "dbo"."ref_WOCStatus" "WOCIDFKwoc_CurrentStatusFK" on "WOCIDFK"."woc_CurrentStatusFK" = "WOCIDFKwoc_CurrentStatusFK"."refwocIDPK"
+]]></text>
+    </command>
+    <command id="ConsentIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="ConsentID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="ConsentID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Consent ID" readOnly="true" />
+    <field name="Wocidfk" type="Int32" label="Wocidfk" showInSummary="true">
+      <items style="Lookup" dataController="WOCLIST" newDataView="createForm1" dataValueField="WocRecIdpk" dataTextField="WocClientcin" copy="WocidfkwocCurrentstatusfkrefwocStatusname=WocCurrentstatusfkrefwocStatusname" />
+    </field>
+    <field name="WocidfkWocClientcin" type="String" readOnly="true" label="Wocidfk Woc Clientcin" length="8" />
+    <field name="ConsentFileName" type="String" label="Consent File Name" length="255" showInSummary="true" />
+    <field name="ConsentLength" type="Int32" label="Consent Length" showInSummary="true" />
+    <field name="ConsentContentType" type="String" label="Consent Content Type" length="50" showInSummary="true" />
+    <field name="ConsentLoadedDate" type="DateTime" dataFormatString="g" label="Consent Loaded Date" showInSummary="true" />
+    <field name="Consent" type="Byte[]" label="Consent" sourceFields="ConsentID" onDemand="true" onDemandHandler="ConsentAttachmentHandler" onDemandStyle="Thumbnail" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Consents">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="Wocidfk" aliasFieldName="WocidfkWocClientcin" />
+        <dataField fieldName="ConsentFileName" />
+        <dataField fieldName="ConsentLength" columns="15" />
+        <dataField fieldName="ConsentContentType" columns="50" />
+        <dataField fieldName="ConsentLoadedDate" columns="20" />
+        <dataField fieldName="Consent" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Consents">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Consents" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="Wocidfk" aliasFieldName="WocidfkWocClientcin" />
+            <dataField fieldName="ConsentFileName" />
+            <dataField fieldName="ConsentLength" columns="15" />
+            <dataField fieldName="ConsentContentType" columns="50" />
+            <dataField fieldName="ConsentLoadedDate" columns="20" />
+            <dataField fieldName="Consent" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Consents">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Consents" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="Wocidfk" aliasFieldName="WocidfkWocClientcin" />
+            <dataField fieldName="ConsentFileName" />
+            <dataField fieldName="ConsentLength" columns="15" />
+            <dataField fieldName="ConsentContentType" columns="50" />
+            <dataField fieldName="ConsentLoadedDate" columns="20" />
+            <dataField fieldName="Consent" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="New" type="Sql" phase="Execute" name="OnNew-AddDate"><![CDATA[SET @ConsentLoadedDate = GETDATE()]]></rule>
+  </businessRules>
+  <blobAdapterConfig>Field:Consent
+File_Name-Field:ConsentFileName
+Content-Type-Field:ConsentContentType
+Storage-System:File
+Path-Template:C:\temp\consents\consent-{ConsentFileName}</blobAdapterConfig>
+</dataController>

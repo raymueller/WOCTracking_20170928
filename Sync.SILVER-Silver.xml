@@ -1,0 +1,2305 @@
+﻿<?xml version="1.0" encoding="utf-8"?><logs><log type="Controllers">
+  <c y="NodeSet" t="2017-09-18T20:15:06">
+    <controller name="Woclists" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>New</CommandName>
+      <Name>OnNew-AddDates</Name>
+      <Phase>Execute</Phase>
+      <Script>SET @WocCreatedDate = GETDATE()
+SET @WocUpdatedon = GETDATE()
+SET @WocReceiveddate = GETDATE()
+</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-18T20:16:25">
+    <controller name="Woclists" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>Update</CommandName>
+      <Name>OnUpdate-AddDates</Name>
+      <Phase>Execute</Phase>
+      <Script>SET @WocUpdatedon = GETDATE()</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-18T20:16:57">
+    <controller name="Woclists" />
+    <field name="WocCreateddate" />
+    <update>
+      <Type>Date</Type>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-18T20:17:09">
+    <controller name="Woclists" />
+    <field name="WocCreateddate" />
+    <update>
+      <Type>DateTime</Type>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-18T20:17:22">
+    <controller name="Woclists" />
+    <field name="WocClientconsentdate" />
+    <update>
+      <Type>Date</Type>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-18T20:17:28">
+    <controller name="Woclists" />
+    <field name="WocReceiveddate" />
+    <update>
+      <Type>Date</Type>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-18T20:17:36">
+    <controller name="Woclists" />
+    <field name="WocCompleteddate" />
+    <update>
+      <Type>Date</Type>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-18T20:27:46">
+    <controller name="Woclists" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>New</CommandName>
+      <Name>OnNew-GetID</Name>
+      <Phase>Before</Phase>
+      <Script>exec dbo.getNextCount 1,'0',5 = @wocSeqid output</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-18T20:31:42">
+    <controller name="Woclists" />
+    <rule id="r102" />
+    <update>
+      <Script>DECLARE	@return_value int,
+		@newMRN varchar(6)
+
+EXEC	@return_value = [dbo].[getNextCount]
+		@inApplicationID = 1,
+		@inPADCHAR = N'0',
+		@inPADLENGTH = 5,
+		@newMRN = @newMRN OUTPUT
+
+SELECT	@WocSeqid = @return_value
+
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-18T20:34:55">
+    <controller name="Woclists" />
+    <rule id="r102" />
+    <update>
+      <Script>DECLARE	@return_value int,
+		@newMRN varchar(6)
+
+EXEC	@return_value = [dbo].[getNextCount]
+		@inApplicationID = 1,
+		@inPADCHAR = N'0',
+		@inPADLENGTH = 5,
+		@newMRN = @newMRN OUTPUT
+
+SELECT	@WocSeqid = @return_value
+
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-20T22:33:11">
+    <controller name="Woclists" />
+    <rule id="r102" />
+    <update>
+      <Script>DECLARE	@return_value int,
+		@newMRN varchar(6)
+
+EXEC	@return_value = [dbo].[getNextCount]
+		@inApplicationID = 1,
+		@inPADCHAR = N'0',
+		@inPADLENGTH = 5,
+		@newMRN = @newMRN OUTPUT
+
+SET	@WocSeqid = @return_value
+
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-20T22:34:47">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <dataField fieldName="WocSeqid" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-20T22:35:13">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <dataField fieldName="WocUpdatedon" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocSeqid" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-20T22:37:18">
+    <controller name="Woclists" />
+    <rule id="r102" />
+    <update>
+      <Script>DECLARE	@return_value int,
+		@newMRN varchar(6)
+
+EXEC	@return_value = [dbo].[getNextCount]
+		@inApplicationID = 1,
+		@inPADCHAR = N'0',
+		@inPADLENGTH = 5,
+		@newMRN = @newMRN OUTPUT
+
+SET	@WocSeqid = @return_value
+
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-20T22:39:08">
+    <controller name="Woclists" />
+    <rule id="r102" />
+    <update>
+      <Script>DECLARE	@return_value int,
+		@newMRN varchar(6)
+
+EXEC	@return_value = [dbo].[getNextCount]
+		@inApplicationID = 1,
+		@inPADCHAR = N'0',
+		@inPADLENGTH = 5,
+		@newMRN = @newMRN OUTPUT
+
+SET	@WocSeqid = @return_value
+
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T19:54:30">
+    <controller name="Woclists" />
+    <rule id="r102" />
+    <update>
+      <Script>DECLARE	@return_value int,
+		@newMRN varchar(6)
+
+EXEC	@return_value = getNextCount
+		@inApplicationID = 1,
+		@inPADCHAR = N'0',
+		@inPADLENGTH = 5,
+		@newMRN = @newMRN OUTPUT
+
+SET	@WocSeqid = @return_value
+
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T19:55:53">
+    <controller name="Woclists" />
+    <rule id="r102" />
+    <update>
+      <Script>DECLARE	@return_value int,
+		@newMRN varchar(6)
+
+EXEC	@return_value = getNextCount
+		@inApplicationID = 1,
+		@inPADCHAR = N'0',
+		@inPADLENGTH = 5,
+		@newMRN = @newMRN OUTPUT
+
+SET	@WocSeqid = @return_value
+
+</Script>
+      <Phase>Execute</Phase>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T19:57:34">
+    <controller name="Woclists" />
+    <rule id="r100" />
+    <update>
+      <Script>SET @WocCreateddate = GETDATE()
+SET @WocUpdatedon = GETDATE()
+SET @WocReceiveddate = GETDATE()
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T20:16:23">
+    <controller name="Woclists" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>Calculate</CommandName>
+      <Name>ActionID-Calculate</Name>
+      <Phase>Execute</Phase>
+      <Script>SET @WocActiontrackingid = 'NFMMC/DOH WOC Request: ' + CONVERT(VARCHAR, YEAR(GETDATE()))+CONVERT(varchar, MONTH(GETDATE()))+CONVERT(varchar, DAY(GETDATE()))+@WocSeqid</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-21T20:17:41">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <dataField fieldName="WocSeqid" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocActiontrackingid" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T20:17:59">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <dataField fieldName="WocActiontrackingid" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T20:19:32">
+    <controller name="Woclists" />
+    <rule id="r103" />
+    <update>
+      <Script>SET @WocActiontrackingid = 'NFMMC/DOH WOC Request: ' + CONVERT(VARCHAR, YEAR(GETDATE()))+CONVERT(varchar, MONTH(GETDATE()))+CONVERT(varchar, DAY(GETDATE()))</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T20:21:38">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <dataField fieldName="WocSeqid" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T20:26:28">
+    <controller name="Woclists" />
+    <field name="WocActiontrackingid" />
+    <update>
+      <CausesCalculate>true</CausesCalculate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:02:01">
+    <controller name="Woclists" />
+    <field name="WocActiontrackingid" />
+    <update>
+      <CausesCalculate>false</CausesCalculate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:02:40">
+    <controller name="Woclists" />
+    <field name="WocActiontrackingid" />
+    <update>
+      <Type>Single</Type>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:02:50">
+    <controller name="Woclists" />
+    <rule id="r103" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:05:30">
+    <controller name="Woclists" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>New</CommandName>
+      <Name>OnNew-CreateActionID</Name>
+      <Phase>Execute</Phase>
+      <Script>DECLARE	@return_value varchar(12),
+		@outResult varchar(50)
+
+EXEC	@return_value = usp_CreateActionID
+		@inWOCID = @WocSeqid
+		@outResult = @ourResult OUTPUT
+
+SET	@WocActiontrackingID = @return_value</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:09:49">
+    <controller name="Woclists" />
+    <rule id="r103" />
+    <update>
+      <Script>DECLARE	@return_value varchar(50),
+		@outResult varchar(50)
+
+EXEC	@return_value = usp_CreateActionID
+		@inWOCID = @WocSeqid,
+		@outResult = @ourResult OUTPUT
+
+SET	@WocActiontrackingID = @return_value</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:12:16">
+    <controller name="Woclists" />
+    <rule id="r103" />
+    <update>
+      <Script>DECLARE	@return_value varchar(50),
+		@outResult varchar(50)
+
+EXEC	@return_value = usp_CreateActionID
+		@inWOCID = @WocSeqid,
+		@outResult = @outResult OUTPUT
+
+SET	@WocActiontrackingID = @return_value</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:13:05">
+    <controller name="Woclists" />
+    <rule id="r103" />
+    <update>
+      <Script>DECLARE	@return_value varchar(50),
+		@outResult varchar(50)
+
+EXEC	@return_value = usp_CreateWOCActionID
+		@inWOCID = @WocSeqid,
+		@outResult = @outResult OUTPUT
+
+SET	@WocActiontrackingID = @return_value</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:13:21">
+    <controller name="Woclists" />
+    <rule id="r103" />
+    <update>
+      <Script>DECLARE	@return_value varchar(50),
+		@outResult varchar(50)
+
+EXEC	@return_value = usp_CreateWOCActionID
+		@inWOCID = @WocSeqid,
+		@outResult = @outResult OUTPUT
+
+SET	@WocActiontrackingID = @return_value</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:17:36">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <dataField fieldName="WocUpdatedon" />
+    <update>
+      <Hidden>true</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:17:45">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <dataField fieldName="WocSeqid" />
+    <update>
+      <TextMode>Static</TextMode>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:18:48">
+    <controller name="Woclists" />
+    <rule id="r103" />
+    <update>
+      <Script>DECLARE	@return_value varchar(50),
+		@outResult varchar(50)
+
+EXEC	@return_value = usp_CreateWOCActionID
+		@inWOCID = @WocSeqid,
+		@outResult = @outResult OUTPUT
+
+SET	@WocActiontrackingID = @return_value</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:45:05">
+    <controller name="Woclists" />
+    <field name="WocActiontrackingid" />
+    <update>
+      <Computed>true</Computed>
+      <Formula>SELECT CONCAT('NFMMC/DOH WOC Request: ', 
+				CONVERT(VARCHAR, YEAR(GETDATE())), 
+				dbo.PadLeft(CONVERT(varchar, MONTH(GETDATE())),'0',2), 
+				dbo.PadLeft(CONVERT(varchar, DAY(GETDATE())),'0',2)
+			 ) 
+				+ dbo.PadLeft(WOCLists.woc_SeqID,'0',5)</Formula>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:45:12">
+    <controller name="Woclists" />
+    <rule id="r103" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:49:46">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <dataField fieldName="WocSeqid" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:49:58">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <dataField fieldName="WocActiontrackingid" />
+    <update>
+      <Hidden>true</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:50:40">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocActiontrackingid" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:50:45">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <dataField fieldName="WocCreateddate" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocActiontrackingid" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:50:52">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <dataField fieldName="WocUpdatedon" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocCreateddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:50:55">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <dataField fieldName="WocUpdatedon" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocCreateddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:50:58">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <dataField fieldName="WocUpdatedon" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocCreateddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:51:00">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <dataField fieldName="WocActiontrackingid" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocCreateddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:51:19">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <dataField fieldName="WocCreateddate" />
+    <update>
+      <TextMode>Static</TextMode>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:51:27">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <dataField fieldName="WocActiontrackingid" />
+    <update>
+      <TextMode>Static</TextMode>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:51:39">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <dataField fieldName="WocReceiveddate" />
+    <update>
+      <TextMode>Static</TextMode>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:51:53">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <dataField fieldName="WocSeqid" />
+    <update>
+      <TextMode>Static</TextMode>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:52:12">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocClientfirstname" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:52:17">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocClientconsentdate" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:52:28">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocPerformedby" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:52:34">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocComments" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:52:45">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocActiontrackingid" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:52:49">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <move>
+      <controller name="Woclists" />
+      <view id="grid1" />
+      <dataField fieldName="WocSeqid" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:52:53">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocCreateddate" />
+    <move>
+      <controller name="Woclists" />
+      <view id="grid1" />
+      <dataField fieldName="WocSeqid" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:52:58">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocSeqid" />
+    <move>
+      <controller name="Woclists" />
+      <view id="grid1" />
+      <dataField fieldName="WocCreateddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T21:53:23">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocCreateddate" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:05:59">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <dataField fieldName="WocCreateddate" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocSeqid" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:06:04">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <dataField fieldName="WocSeqid" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocCreateddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:06:34">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <insert type="category">
+      <HeaderText>Comments</HeaderText>
+      <Flow>NewRow</Flow>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:06:37">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c2" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocComments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:06:53">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <insert type="category">
+      <HeaderText>Audit</HeaderText>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:07:11">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c3" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:07:32">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <insert type="category">
+      <HeaderText>Client Detail</HeaderText>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:07:44">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c3" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocClientlastname" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:07:44">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c3" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocClientfirstname" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:07:44">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c3" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocClientcin" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:07:44">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c3" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocClientconsentdate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:07:50">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c3" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:08:30">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <insert type="category">
+      <HeaderText>Request Details</HeaderText>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:08:34">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c4" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:09:04">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c4" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocCreateddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:09:04">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c4" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocUpdatedon" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:09:04">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c4" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocRequestinghhcma" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:09:04">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c4" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocRequestedofhhcma" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:09:04">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c4" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocReceiveddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:09:04">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c4" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocCompleteddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:09:04">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c4" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocCurrentstatusfk" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:09:14">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c4" />
+    <update>
+      <Flow>NewColumn</Flow>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:10:38">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c3" />
+    <update>
+      <Flow>NewColumn</Flow>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:11:38">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <update>
+      <HeaderText>Withdrawal of Consent</HeaderText>
+      <Description>Add New Withdrawal of Consent</Description>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:13:01">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocCreateddate" />
+    <move>
+      <controller name="Woclists" />
+      <view id="grid1" />
+      <dataField fieldName="WocReceiveddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:13:07">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocCreateddate" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:13:24">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocCompleteddate" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:13:34">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocReceiveddate" />
+    <move>
+      <controller name="Woclists" />
+      <view id="grid1" />
+      <dataField fieldName="WocCurrentstatusfk" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:13:37">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocSeqid" />
+    <after>
+      <controller name="Woclists" />
+      <view id="grid1" />
+      <dataField fieldName="WocCurrentstatusfk" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:13:46">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocRequestedofhhcma" />
+    <move>
+      <controller name="Woclists" />
+      <view id="grid1" />
+      <dataField fieldName="WocClientcin" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:13:51">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <dataField fieldName="WocClientcin" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:14:18">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <update>
+      <HeaderText>Withdrawal of Consent</HeaderText>
+      <Description />
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:14:45">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <insert type="category">
+      <HeaderText>Request Details</HeaderText>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:02">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocSeqid" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:02">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocActiontrackingid" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:02">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocPerformedby" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:22">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c2" />
+      <dataField fieldName="WocSeqid" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:22">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c2" />
+      <dataField fieldName="WocActiontrackingid" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:22">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c2" />
+      <dataField fieldName="WocPerformedby" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:52">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocCreateddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:52">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocUpdatedon" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:52">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocRequestinghhcma" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:52">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocRequestedofhhcma" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:52">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocReceiveddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:52">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocCompleteddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:15:52">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocCurrentstatusfk" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:16:03">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <update>
+      <Flow>NewColumn</Flow>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:16:24">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <insert type="category">
+      <HeaderText>Client Detail</HeaderText>
+      <Flow>NewColumn</Flow>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:16:49">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c3" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocClientcin" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:16:49">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c3" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocClientfirstname" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:16:49">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c3" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocClientlastname" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:16:57">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c3" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocClientconsentdate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:17:27">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <insert type="category">
+      <HeaderText>Comments</HeaderText>
+      <Flow>NewRow</Flow>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:17:34">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c4" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocComments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:17:37">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <dataField fieldName="WocComments" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:20:59">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <update>
+      <Label>Withdrawal of Consent Listing</Label>
+      <HeaderText />
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:21:13">
+    <controller name="Woclists" />
+    <copy>
+      <controller name="Woclists" />
+      <view id="grid1" />
+    </copy>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:21:17">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <move>
+      <controller name="Woclists" />
+      <view id="v100" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:21:47">
+    <controller name="Woclists" />
+    <view id="v100" />
+    <update>
+      <Label>All Withdrawal of Consent Listing</Label>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:22:14">
+    <controller name="Woclists" />
+    <view id="v100" />
+    <rename>DisplayAllWOC</rename>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:22:39">
+    <controller name="Woclists" />
+    <view id="grid1" />
+    <rename>DisplayOpenWOC</rename>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:24:27">
+    <controller name="Woclists" />
+    <view id="DisplayOpenWOC" />
+    <update>
+      <FilterExpression>WocCurrentstatusfk &lt;&gt; 'COMPLETED' OR WocCurrentstatusfk &lt;&gt; 'DENIED'</FilterExpression>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:28:00">
+    <controller name="Woclists" />
+    <view id="DisplayOpenWOC" />
+    <update>
+      <FilterExpression>WocCurrentstatusfk &lt;&gt; 4' OR WocCurrentstatusfk &lt;&gt; 3</FilterExpression>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:28:43">
+    <controller name="Woclists" />
+    <view id="DisplayOpenWOC" />
+    <update>
+      <FilterExpression>WocCurrentstatusfk &lt;&gt; 4 OR WocCurrentstatusfk &lt;&gt; 3</FilterExpression>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:31:01">
+    <controller name="Woclists" />
+    <view id="DisplayOpenWOC" />
+    <update>
+      <FilterExpression>WocCurrentstatusfk &lt;&gt; 4 </FilterExpression>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T22:32:34">
+    <controller name="Woclists" />
+    <view id="DisplayOpenWOC" />
+    <update>
+      <FilterExpression>WocCurrentstatusfk NOT IN (3,4)</FilterExpression>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:37:52">
+    <controller name="Woclists" />
+    <field name="WocClientcin" />
+    <update>
+      <Mask>LL99999L</Mask>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:38:15">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <dataField fieldName="WocCreateddate" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocRequesthhcmafk" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:38:22">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <dataField fieldName="WocRequesthhcmafk" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocTargethhcmafk" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:38:33">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <category id="c2" />
+    <dataField fieldName="WocTargethhcmafk" />
+    <move>
+      <controller name="Woclists" />
+      <view id="editForm1" />
+      <category id="c2" />
+      <dataField fieldName="WocCreateddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:39:02">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <dataField fieldName="WocReceiveddate" />
+    <update>
+      <Hidden>true</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:39:15">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c4" />
+    <dataField fieldName="WocCreateddate" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocRequesthhcmafk" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:39:19">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c4" />
+    <dataField fieldName="WocRequesthhcmafk" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="WocTargethhcmafk" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:39:23">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <category id="c4" />
+    <dataField fieldName="WocTargethhcmafk" />
+    <move>
+      <controller name="Woclists" />
+      <view id="createForm1" />
+      <category id="c4" />
+      <dataField fieldName="WocCreateddate" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:40:07">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <dataField fieldName="WocCompleteddate" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:40:40">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <dataField fieldName="WocCreateddate" />
+    <update>
+      <Hidden>true</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:41:00">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <dataField fieldName="WocCompleteddate" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:42:58">
+    <controller name="Woclists" />
+    <view id="createForm1" />
+    <update>
+      <Label>Add New Withdrawal of Consent</Label>
+      <HeaderText />
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:43:19">
+    <controller name="Woclists" />
+    <view id="editForm1" />
+    <update>
+      <Label>Edit Withdrawal of Consent</Label>
+      <HeaderText />
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:43:44">
+    <controller name="Woclists" />
+    <view id="DisplayAllWOC" />
+    <update>
+      <Label>Display All Withdrawal of Consents</Label>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:44:06">
+    <controller name="Woclists" />
+    <view id="DisplayOpenWOC" />
+    <update>
+      <Label>Display Active Withdrawal of Consents</Label>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:53:50">
+    <controller name="Woclists" />
+    <view id="DisplayOpenWOC" />
+    <update>
+      <HeaderText>material-icon-computer</HeaderText>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:57:55">
+    <controller name="RefHhcma" />
+    <rename>HHCMA</rename>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:58:12">
+    <controller name="RefWocstatus" />
+    <rename>STATUS</rename>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:58:28">
+    <controller name="Woclists" />
+    <rename>WOCLIST</rename>
+  </c>
+  <c y="NodeSet" t="2017-09-22T19:40:29">
+    <controller name="WOCLIST" />
+    <move>
+      <controller name="Wocattachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T19:40:37">
+    <controller name="WOCLIST" />
+    <view id="createForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Wocattachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T19:40:39">
+    <controller name="WOCLIST" />
+    <view id="editForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Wocattachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T19:40:43">
+    <controller name="WOCLIST" />
+    <view id="DisplayAllWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Wocattachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T19:40:47">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Wocattachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T19:51:23">
+    <controller name="WOCLIST" />
+    <field name="Wocattachments" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-22T19:53:51">
+    <controller name="WOCLIST" />
+    <move>
+      <controller name="Wocattachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T19:53:57">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Wocattachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T19:54:10">
+    <controller name="WOCLIST" />
+    <view id="createForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Wocattachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T19:54:14">
+    <controller name="WOCLIST" />
+    <view id="editForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Wocattachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T19:54:24">
+    <controller name="WOCLIST" />
+    <view id="editForm1" />
+    <dataField fieldName="Wocattachments" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:02:31">
+    <controller name="WOCLIST" />
+    <field name="Wocattachments" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:04:57">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <update>
+      <Tags>material-icon-computer</Tags>
+      <HeaderText />
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:44:36">
+    <controller name="Attachments" />
+    <field name="WocidfkwocClientlastname" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:44:58">
+    <controller name="Attachments" />
+    <field name="WocidfkwocRequesthhcmafkhhcmammispk" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:45:06">
+    <controller name="Attachments" />
+    <field name="Wocidfk" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:45:11">
+    <controller name="Attachments" />
+    <field name="WocidfkwocTargethhcmafkhhcmammispk" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:45:16">
+    <controller name="Attachments" />
+    <field name="WocidfkwocCurrentstatusfkrefwocStatusname" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:46:13">
+    <controller name="Attachments" />
+    <command id="command1" />
+    <update>
+      <Text>select
+	"Attachments"."AttachmentID" "AttachmentID"
+	,"Attachments"."WOCIDFK" "Wocidfk"
+	,"WOCIDFK"."woc_ClientLastName" "WocidfkwocClientlastname"
+	,"WOCIDFKwoc_RequestHHCMAfk"."HHCMAMMISpk" "WocidfkwocRequesthhcmafkhhcmammispk"
+	,"WOCIDFKwoc_TargetHHCMAfk"."HHCMAMMISpk" "WocidfkwocTargethhcmafkhhcmammispk"
+	,"WOCIDFKwoc_CurrentStatusFK"."refwoc_StatusName" "WocidfkwocCurrentstatusfkrefwocStatusname"
+	,"Attachments"."Attachment" "Attachment"
+	,"Attachments"."FileName" "FileName"
+	,"Attachments"."Length" "Length"
+	,"Attachments"."ContentType" "ContentType"
+from "dbo"."Attachments" "Attachments"
+	left join "dbo"."WOCLists" "WOCIDFK" on "Attachments"."WOCIDFK" = "WOCIDFK"."wocRecIDPK"
+	left join "dbo"."ref_HHCMA" "WOCIDFKwoc_RequestHHCMAfk" on "WOCIDFK"."woc_RequestHHCMAfk" = "WOCIDFKwoc_RequestHHCMAfk"."HHCMAIDPK"
+	left join "dbo"."ref_HHCMA" "WOCIDFKwoc_TargetHHCMAfk" on "WOCIDFK"."woc_TargetHHCMAfk" = "WOCIDFKwoc_TargetHHCMAfk"."HHCMAIDPK"
+	left join "dbo"."ref_WOCStatus" "WOCIDFKwoc_CurrentStatusFK" on "WOCIDFK"."woc_CurrentStatusFK" = "WOCIDFKwoc_CurrentStatusFK"."refwocIDPK"
+</Text>
+      <Custom>false</Custom>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:47:01">
+    <controller name="WOCLIST" />
+    <move>
+      <controller name="Attachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:47:51">
+    <controller name="WOCLIST" />
+    <view id="createForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Attachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:47:55">
+    <controller name="WOCLIST" />
+    <view id="editForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Attachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:47:58">
+    <controller name="WOCLIST" />
+    <view id="DisplayAllWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Attachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:48:01">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Attachments" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:48:04">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <dataField fieldName="Attachments" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-22T20:49:56">
+    <controller name="WOCLIST" />
+    <field name="Attachments" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:27:43">
+    <controller name="Consents" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>New</CommandName>
+      <Name>OnNew-AddDate</Name>
+      <Phase>Execute</Phase>
+      <Script>SET @ConsentLoadedDate = GETDATE()</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:29:18">
+    <controller name="WOCLIST" />
+    <move>
+      <controller name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:29:24">
+    <controller name="WOCLIST" />
+    <view id="createForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:29:26">
+    <controller name="WOCLIST" />
+    <view id="editForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:29:28">
+    <controller name="WOCLIST" />
+    <view id="DisplayAllWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:29:30">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:29:32">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <dataField fieldName="Consents" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:30:57">
+    <controller name="WOCLIST" />
+    <field name="Consents" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:32:23">
+    <controller name="Consents" />
+    <insert type="field">
+      <Name>Consent</Name>
+      <Type>Byte[]</Type>
+      <AllowNulls>true</AllowNulls>
+      <IsPrimaryKey>false</IsPrimaryKey>
+      <IsVirtual>false</IsVirtual>
+      <Computed>false</Computed>
+      <Calculated>false</Calculated>
+      <CausesCalculate>false</CausesCalculate>
+      <OnDemand>true</OnDemand>
+      <SourceFields>ConsentID</SourceFields>
+      <OnDemandHandler>ConsentOnDemandHandler</OnDemandHandler>
+      <Label>Consent Form</Label>
+      <ReadOnly>false</ReadOnly>
+      <ShowInSummary>false</ShowInSummary>
+      <HtmlEncode>true</HtmlEncode>
+      <FormatOnClient>true</FormatOnClient>
+      <SearchOnStart>false</SearchOnStart>
+      <AutoSelect>false</AutoSelect>
+      <ItemsLetters>false</ItemsLetters>
+      <AllowQBE>true</AllowQBE>
+      <AllowSorting>true</AllowSorting>
+      <MaskType>None</MaskType>
+      <AllowLEV>false</AllowLEV>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:34:06">
+    <controller name="Consents" />
+    <update>
+      <GenerateDataAccessObjects>false</GenerateDataAccessObjects>
+      <BlobAdapterConfig>Field:Consent
+Storage-System:File
+Path-Template:C:\Temp\Consents\{ConsentFileName}</BlobAdapterConfig>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:35:26">
+    <controller name="WOCLIST" />
+    <move>
+      <controller name="Consents" />
+      <field name="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:35:32">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:35:37">
+    <controller name="WOCLIST" />
+    <view id="DisplayAllWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:35:41">
+    <controller name="WOCLIST" />
+    <view id="editForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:35:46">
+    <controller name="WOCLIST" />
+    <view id="createForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:36:18">
+    <controller name="WOCLIST" />
+    <field name="Consent" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:38:08">
+    <controller name="WOCLIST" />
+    <move>
+      <controller name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:38:21">
+    <controller name="WOCLIST" />
+    <view id="createForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:38:30">
+    <controller name="WOCLIST" />
+    <view id="editForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:38:34">
+    <controller name="WOCLIST" />
+    <view id="DisplayAllWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:38:38">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:38:54">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <dataField fieldName="Consents" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-22T21:45:24">
+    <controller name="Consents" />
+    <field name="Consent" />
+    <update>
+      <OnDemandStyle>Thumbnail</OnDemandStyle>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T14:18:23">
+    <controller name="Consents" />
+    <view id="grid1" />
+    <move>
+      <controller name="Consents" />
+      <field name="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T14:18:26">
+    <controller name="Consents" />
+    <view id="grid1" />
+    <dataField fieldName="ConsentFileName" />
+    <move>
+      <controller name="Consents" />
+      <view id="grid1" />
+      <dataField fieldName="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T14:18:28">
+    <controller name="Consents" />
+    <view id="grid1" />
+    <dataField fieldName="Consent" />
+    <move>
+      <controller name="Consents" />
+      <view id="grid1" />
+      <dataField fieldName="ConsentFileName" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T14:18:33">
+    <controller name="Consents" />
+    <view id="grid1" />
+    <dataField fieldName="ConsentFileName" />
+    <move>
+      <controller name="Consents" />
+      <view id="grid1" />
+      <dataField fieldName="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T14:18:38">
+    <controller name="Consents" />
+    <view id="editForm1" />
+    <move>
+      <controller name="Consents" />
+      <field name="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T14:18:41">
+    <controller name="Consents" />
+    <view id="createForm1" />
+    <move>
+      <controller name="Consents" />
+      <field name="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T14:18:46">
+    <controller name="Consents" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <dataField fieldName="ConsentFileName" />
+    <move>
+      <controller name="Consents" />
+      <view id="createForm1" />
+      <category id="c1" />
+      <dataField fieldName="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T14:18:51">
+    <controller name="Consents" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <dataField fieldName="ConsentFileName" />
+    <move>
+      <controller name="Consents" />
+      <view id="editForm1" />
+      <category id="c1" />
+      <dataField fieldName="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T14:18:59">
+    <controller name="Consents" />
+    <view id="editForm1" />
+    <dataField fieldName="Consent" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T14:21:06">
+    <controller name="WOCLIST" />
+    <field name="Consents" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-23T14:21:25">
+    <controller name="Consents" />
+    <field name="Consent" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-23T19:49:49">
+    <controller name="Consents" />
+    <insert type="field">
+      <Name>Consent</Name>
+      <Type>Byte[]</Type>
+      <AllowNulls>true</AllowNulls>
+      <IsPrimaryKey>false</IsPrimaryKey>
+      <IsVirtual>false</IsVirtual>
+      <Computed>false</Computed>
+      <Calculated>false</Calculated>
+      <CausesCalculate>false</CausesCalculate>
+      <OnDemand>true</OnDemand>
+      <SourceFields>ConsentID</SourceFields>
+      <OnDemandHandler>ConsentAttachmentHandler</OnDemandHandler>
+      <OnDemandStyle>Thumbnail</OnDemandStyle>
+      <Label>Consent</Label>
+      <ReadOnly>false</ReadOnly>
+      <ShowInSummary>false</ShowInSummary>
+      <HtmlEncode>true</HtmlEncode>
+      <FormatOnClient>true</FormatOnClient>
+      <SearchOnStart>false</SearchOnStart>
+      <AutoSelect>false</AutoSelect>
+      <ItemsLetters>false</ItemsLetters>
+      <AllowQBE>true</AllowQBE>
+      <AllowSorting>true</AllowSorting>
+      <MaskType>None</MaskType>
+      <AllowLEV>false</AllowLEV>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-23T19:52:26">
+    <controller name="Consents" />
+    <update>
+      <BlobAdapterConfig>Field:Consent
+File_Name-Field:ConsentFileName
+Content-Type-Field:ConsentContentType
+Storage-System:File
+Path-Template:C:\temp\consents\consent-{ConsentFileName}</BlobAdapterConfig>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T19:55:44">
+    <controller name="Consents" />
+    <view id="grid1" />
+    <move>
+      <controller name="Consents" />
+      <field name="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T19:55:47">
+    <controller name="Consents" />
+    <view id="createForm1" />
+    <move>
+      <controller name="Consents" />
+      <field name="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T19:55:50">
+    <controller name="Consents" />
+    <view id="editForm1" />
+    <move>
+      <controller name="Consents" />
+      <field name="Consent" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T19:57:24">
+    <controller name="WOCLIST" />
+    <move>
+      <controller name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T19:57:29">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T19:57:31">
+    <controller name="WOCLIST" />
+    <view id="DisplayAllWOC" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T19:57:35">
+    <controller name="WOCLIST" />
+    <view id="createForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T19:57:39">
+    <controller name="WOCLIST" />
+    <view id="editForm1" />
+    <move>
+      <controller name="WOCLIST" />
+      <field name="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T20:00:02">
+    <controller name="Consents" />
+    <field name="WocidfkwocClientlastname" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-23T20:00:07">
+    <controller name="Consents" />
+    <field name="WocidfkwocRequesthhcmafkhhcmammispk" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-23T20:00:13">
+    <controller name="Consents" />
+    <field name="WocidfkwocTargethhcmafkhhcmammispk" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-23T20:00:32">
+    <controller name="Consents" />
+    <field name="WocidfkwocCurrentstatusfkrefwocStatusname" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-23T20:14:48">
+    <controller name="WOCLIST" />
+    <field name="WocClientconsentdate" />
+    <update>
+      <Type>DateTime</Type>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T20:14:55">
+    <controller name="WOCLIST" />
+    <field name="WocReceiveddate" />
+    <update>
+      <Type>DateTime</Type>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T20:15:14">
+    <controller name="WOCLIST" />
+    <field name="WocCompleteddate" />
+    <update>
+      <Type>DateTime</Type>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:01:53">
+    <controller name="WOCLIST" />
+    <field name="WocClientcin" />
+    <configure type="CodeConverter" />
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:02:48">
+    <controller name="WOCLIST" />
+    <rule id="r103" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:06:08">
+    <controller name="WOCLIST" />
+    <field name="WocClientlastname" />
+    <configure type="CodeConverter" />
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:06:42">
+    <controller name="WOCLIST" />
+    <rule id="r103" />
+    <update>
+      <CommandName>Insert|Update</CommandName>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:20:28">
+    <controller name="WOCLIST" />
+    <rule id="r103" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:21:50">
+    <controller name="WOCLIST" />
+    <field name="WocClientlastname" />
+    <configure type="CodeConverter" />
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:22:05">
+    <controller name="WOCLIST" />
+    <rule id="r103" />
+    <update>
+      <CommandName>Insert|Update</CommandName>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:26:48">
+    <controller name="WOCLIST" />
+    <rule id="r103" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:30:12">
+    <controller name="WOCLIST" />
+    <view id="createForm1" />
+    <insert type="category">
+      <HeaderText>Consents &amp; Documents</HeaderText>
+      <Flow>NewRow</Flow>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:30:16">
+    <controller name="WOCLIST" />
+    <view id="createForm1" />
+    <category id="c5" />
+    <move>
+      <controller name="WOCLIST" />
+      <view id="createForm1" />
+      <category id="c2" />
+      <dataField fieldName="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:30:39">
+    <controller name="WOCLIST" />
+    <view id="editForm1" />
+    <insert type="category">
+      <HeaderText>Consents &amp; Documents</HeaderText>
+      <Flow>NewRow</Flow>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:30:42">
+    <controller name="WOCLIST" />
+    <view id="editForm1" />
+    <category id="c5" />
+    <move>
+      <controller name="WOCLIST" />
+      <view id="editForm1" />
+      <category id="c4" />
+      <dataField fieldName="Consents" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:43:36">
+    <controller name="WOCLIST" />
+    <view id="createForm1" />
+    <dataField fieldName="WocComments" />
+    <update>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:46:49">
+    <controller name="WOCLIST" />
+    <field name="WocClientlastname" />
+    <update>
+      <Computed>true</Computed>
+      <Formula>!String.IsNullOrEmpty(WocClientlastname) ? WocClientlastname.ToUpper() : String.Empty</Formula>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:49:00">
+    <controller name="WOCLIST" />
+    <field name="WocClientlastname" />
+    <update>
+      <Computed>false</Computed>
+      <Formula />
+      <Calculated>true</Calculated>
+      <CodeFormula>!String.IsNullOrEmpty(WocClientlastname) ? WocClientlastname.ToUpper() : String.Empty</CodeFormula>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:51:54">
+    <controller name="WOCLIST" />
+    <field name="WocClientlastname" />
+    <update>
+      <Calculated>false</Calculated>
+      <CodeFormula />
+      <CausesCalculate>false</CausesCalculate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:58:35">
+    <controller name="WOCLIST" />
+    <field name="WocClientlastname" />
+    <update>
+      <Calculated>true</Calculated>
+      <CodeFormula>!String.IsNullOrEmpty(WocClientlastname) ? WocClientlastname.ToUpper() : String.Empty</CodeFormula>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T21:59:21">
+    <controller name="WOCLIST" />
+    <field name="WocClientlastname" />
+    <update>
+      <CodeFormula>!String.IsNullOrEmpty(wocClientlastname) ? wocClientlastname.ToUpper() : String.Empty</CodeFormula>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T22:23:24">
+    <controller name="WOCLIST" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>New</CommandName>
+      <Name>OnNew-UpperCase</Name>
+      <Phase>Before</Phase>
+      <Script>SET @WocClientlastname = UPPER(@WocClientlastname)
+</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-23T22:25:00">
+    <controller name="WOCLIST" />
+    <rule id="r103" />
+    <update>
+      <Script>SET @WocClientlastname = UPPER(@WocClientlastname)
+</Script>
+      <Phase>Execute</Phase>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T22:28:10">
+    <controller name="WOCLIST" />
+    <rule id="r103" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2017-09-23T22:28:41">
+    <controller name="WOCLIST" />
+    <field name="WocTargethhcmafkhhcmaname" />
+    <update>
+      <Label>Target HH/CMA</Label>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T22:29:02">
+    <controller name="WOCLIST" />
+    <field name="WocRequesthhcmafkhhcmaname" />
+    <update>
+      <Label>Requesting HH/CMA</Label>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T22:39:41">
+    <controller name="WOCLIST" />
+    <field name="WocClientlastname" />
+    <update>
+      <ContextFields>WocClientlastname</ContextFields>
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T22:48:32">
+    <controller name="WOCLIST" />
+    <field name="WocClientlastname" />
+    <update>
+      <ContextFields />
+    </update>
+  </c>
+  <c y="NodeSet" t="2017-09-23T22:50:08">
+    <controller name="WOCLIST" />
+    <view id="DisplayOpenWOC" />
+    <dataField fieldName="WocCurrentstatusfk" />
+    <move>
+      <controller name="WOCLIST" />
+      <view id="DisplayOpenWOC" />
+      <dataField fieldName="WocClientcin" />
+    </move>
+  </c>
+</log><log type="Application">
+  <c y="NodeSet" t="2017-09-21T22:22:39">
+    <pages />
+    <renameRefs type="view">
+      <Controller>Woclists</Controller>
+      <Name>grid1</Name>
+      <NewName>DisplayOpenWOC</NewName>
+    </renameRefs>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:57:55">
+    <pages />
+    <renameRefs type="controller">
+      <Name>RefHhcma</Name>
+      <NewName>HHCMA</NewName>
+    </renameRefs>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:58:12">
+    <pages />
+    <renameRefs type="controller">
+      <Name>RefWocstatus</Name>
+      <NewName>STATUS</NewName>
+    </renameRefs>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:58:28">
+    <pages />
+    <renameRefs type="controller">
+      <Name>Woclists</Name>
+      <NewName>WOCLIST</NewName>
+    </renameRefs>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:59:10">
+    <page name="RefWocstatus" />
+    <rename>WOC Status</rename>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:59:26">
+    <page name="Woclists" />
+    <rename>WOC List</rename>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:59:36">
+    <page name="RefHhcma" />
+    <rename>HHCMA</rename>
+  </c>
+  <c y="NodeSet" t="2017-09-22T00:02:56">
+    <pages />
+    <insert type="page">
+      <Name>Adminstrative</Name>
+      <Url>about:blank</Url>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Path>Adminstrative</Path>
+      <Title>Adminstrative</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-22T00:03:06">
+    <page name="Adminstrative" />
+    <move>
+      <page name="RefWocstatus" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T00:03:12">
+    <page name="Adminstrative" />
+    <move>
+      <page name="RefHhcma" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T00:03:30">
+    <page name="RefHhcma" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+    </update>
+  </c>
+</log></logs>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="ref_WOCStatus" alias="ref_WOCStatus" created="2017-09-18T20:10:05" modified="2017-09-18T20:10:13" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="refwocIDPK" fieldName="RefwocIdpk" label="refwoc IDPK" />
+    <column name="refwoc_StatusName" fieldName="RefwocStatusname" label="refwoc Status Name" sortType="Ascending" sortOrder="1" />
+  </columns>
+</dataModel>

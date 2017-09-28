@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode title="^SiteHome^Home^SiteHome^" description="" url="~/index.html">
+    <siteMapNode title="^HomePath^Home^HomePath^" description="^HomeDesc^Application home page^HomeDesc^" url="~/pages/home" cssClass="Wide" />
+    <siteMapNode title="WOC List" description="View Woclists" url="~/pages/woclists" />
+    <siteMapNode title="Consents" description="View Consents" url="~/pages/consents" />
+    <siteMapNode title="Adminstrative" description="" roles="*">
+      <siteMapNode title="WOC Status" description="View Ref Wocstatus" url="~/pages/ref-wocstatus" />
+      <siteMapNode title="HHCMA" description="View Ref Hhcma" url="~/pages/ref-hhcma" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

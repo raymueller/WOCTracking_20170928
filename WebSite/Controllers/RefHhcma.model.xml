@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="ref_HHCMA" alias="ref_HHCMA" created="2017-09-21T23:14:02" modified="2017-09-21T23:35:00" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <where>HHCNA_InUse = 1</where>
+  <foreignKeys />
+  <columns>
+    <column name="HHCMAIDPK" fieldName="Hhcmaidpk" label="Hhcmaidpk" />
+    <column name="HHCMAMMISpk" fieldName="Hhcmammispk" label="MMIS ID" />
+    <column name="HHCMANAME" fieldName="Hhcmaname" label="HH/CMA Name" sortType="Ascending" sortOrder="1" />
+    <column name="HHCNA_InUse" fieldName="HhcnaInuse" label="Hhcna Inuse" />
+  </columns>
+</dataModel>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="WOCLists" alias="WOCLists" created="2017-09-18T20:10:17" modified="2017-09-23T20:13:45" x="20" y="21" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="woc_CurrentStatusFK" parentTableSchema="dbo" parentTableName="ref_WOCStatus" x="446" y="297">
+      <foreignKeyColumn columnName="woc_CurrentStatusFK" parentColumnName="refwocIDPK" />
+    </foreignKey>
+    <foreignKey id="woc_RequestHHCMAfk" parentTableSchema="dbo" parentTableName="ref_HHCMA" x="434" y="20">
+      <foreignKeyColumn columnName="woc_RequestHHCMAfk" parentColumnName="HHCMAIDPK" />
+    </foreignKey>
+    <foreignKey id="woc_TargetHHCMAfk" parentTableSchema="dbo" parentTableName="ref_HHCMA" x="440" y="155">
+      <foreignKeyColumn columnName="woc_TargetHHCMAfk" parentColumnName="HHCMAIDPK" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="wocRecIDPK" fieldName="WocRecIdpk" label="WOC ID" />
+    <column name="woc_CreatedDate" fieldName="WocCreateddate" label="Created Date" sortType="Ascending" sortOrder="1" />
+    <column name="woc_UpdatedOn" fieldName="WocUpdatedon" label="Updated On" />
+    <column name="woc_ClientLastName" fieldName="WocClientlastname" label="Client Last Name" />
+    <column name="woc_ClientFirstName" fieldName="WocClientfirstname" label="Client First Name" />
+    <column name="woc_ClientCIN" fieldName="WocClientcin" label="Client CIN" sortType="Ascending" sortOrder="2" />
+    <column name="woc_ClientConsentDate" fieldName="WocClientconsentdate" label="Client Consent Date" />
+    <column name="woc_ReceivedDate" fieldName="WocReceiveddate" label="Received Date" />
+    <column name="woc_CompletedDate" fieldName="WocCompleteddate" label="Completed Date" />
+    <column name="woc_CurrentStatusFK" fieldName="WocCurrentstatusfk" label="woc Current Status FK" aliasColumnName="refwoc_StatusName" aliasForeignKey="woc_CurrentStatusFK" />
+    <column name="refwoc_StatusName" fieldName="WocCurrentstatusfkrefwocStatusname" label="Current Status" foreignKey="woc_CurrentStatusFK" />
+    <column name="woc_PerformedBy" fieldName="WocPerformedby" label="Performed By" />
+    <column name="woc_Comments" fieldName="WocComments" label="Comments" />
+    <column name="woc_SeqID" fieldName="WocSeqid" label="Sequence" sortType="Ascending" sortOrder="3" />
+    <column name="woc_ActionTrackingID" fieldName="WocActiontrackingid" label="Tracking ID" />
+    <column name="woc_RequestHHCMAfk" fieldName="WocRequesthhcmafk" label="Woc Requesthhcmafk" aliasColumnName="HHCMANAME" aliasForeignKey="woc_RequestHHCMAfk" />
+    <column name="HHCMANAME" fieldName="WocRequesthhcmafkhhcmaname" label="Woc Requesthhcmafkhhcmaname" foreignKey="woc_RequestHHCMAfk" />
+    <column name="woc_TargetHHCMAfk" fieldName="WocTargethhcmafk" label="Woc Targethhcmafk" aliasColumnName="HHCMANAME" aliasForeignKey="woc_TargetHHCMAfk" />
+    <column name="HHCMANAME" fieldName="WocTargethhcmafkhhcmaname" label="Woc Targethhcmafkhhcmaname" foreignKey="woc_TargetHHCMAfk" />
+  </columns>
+</dataModel>

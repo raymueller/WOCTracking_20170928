@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="Consents" alias="Consents" created="2017-09-23T19:48:15" modified="2017-09-23T20:02:51" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="WOCIDFK" parentTableSchema="dbo" parentTableName="WOCLists" x="344" y="20">
+      <foreignKeyColumn columnName="WOCIDFK" parentColumnName="wocRecIDPK" />
+    </foreignKey>
+    <foreignKey id="WOCIDFKwoc_RequestHHCMAfk" parentTableSchema="dbo" parentTableName="ref_HHCMA" baseForeignKey="WOCIDFK" x="675" y="20">
+      <foreignKeyColumn columnName="woc_RequestHHCMAfk" parentColumnName="HHCMAIDPK" />
+    </foreignKey>
+    <foreignKey id="WOCIDFKwoc_TargetHHCMAfk" parentTableSchema="dbo" parentTableName="ref_HHCMA" baseForeignKey="WOCIDFK" x="675" y="197">
+      <foreignKeyColumn columnName="woc_TargetHHCMAfk" parentColumnName="HHCMAIDPK" />
+    </foreignKey>
+    <foreignKey id="WOCIDFKwoc_CurrentStatusFK" parentTableSchema="dbo" parentTableName="ref_WOCStatus" baseForeignKey="WOCIDFK" x="675" y="375">
+      <foreignKeyColumn columnName="woc_CurrentStatusFK" parentColumnName="refwocIDPK" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ConsentID" fieldName="ConsentID" label="Consent ID" />
+    <column name="WOCIDFK" fieldName="Wocidfk" label="Wocidfk" aliasColumnName="woc_ClientCIN" aliasForeignKey="WOCIDFK" />
+    <column name="woc_ClientCIN" fieldName="WocidfkWocClientcin" label="Wocidfk Woc Clientcin" foreignKey="WOCIDFK" />
+    <column name="HHCMAMMISpk" fieldName="WocidfkwocRequesthhcmafkhhcmammispk" label="WOCIDF Kwoc Request HHCM Afk HHCMAMMI Spk" foreignKey="WOCIDFKwoc_RequestHHCMAfk" />
+    <column name="HHCMAMMISpk" fieldName="WocidfkwocTargethhcmafkhhcmammispk" label="WOCIDF Kwoc Target HHCM Afk HHCMAMMI Spk" foreignKey="WOCIDFKwoc_TargetHHCMAfk" />
+    <column name="refwoc_StatusName" fieldName="WocidfkwocCurrentstatusfkrefwocStatusname" label="WOCIDF Kwoc Current Status F Krefwoc Status Name" foreignKey="WOCIDFKwoc_CurrentStatusFK" />
+    <column name="ConsentFileName" fieldName="ConsentFileName" label="Consent File Name" />
+    <column name="ConsentLength" fieldName="ConsentLength" label="Consent Length" />
+    <column name="ConsentContentType" fieldName="ConsentContentType" label="Consent Content Type" />
+    <column name="ConsentLoadedDate" fieldName="ConsentLoadedDate" label="Consent Loaded Date" format="g" />
+    <column name="Consent" fieldName="Consent" label="Consent" />
+  </columns>
+</dataModel>

@@ -1,0 +1,73 @@
+<log xmlns="urn:schemas-codeontime-com:xml-builder" xmlns:aquarium="urn:schemas-codeontime-com:data-aquarium" xmlns:app="urn:schemas-codeontime-com:data-aquarium-application" xmlns:a="urn:schemas-codeontime-com:data-aquarium">
+  <c y="NodeSet" t="2017-09-21T22:22:39">
+    <pages />
+    <renameRefs type="view">
+      <Controller>Woclists</Controller>
+      <Name>grid1</Name>
+      <NewName>DisplayOpenWOC</NewName>
+    </renameRefs>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:57:55">
+    <pages />
+    <renameRefs type="controller">
+      <Name>RefHhcma</Name>
+      <NewName>HHCMA</NewName>
+    </renameRefs>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:58:12">
+    <pages />
+    <renameRefs type="controller">
+      <Name>RefWocstatus</Name>
+      <NewName>STATUS</NewName>
+    </renameRefs>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:58:28">
+    <pages />
+    <renameRefs type="controller">
+      <Name>Woclists</Name>
+      <NewName>WOCLIST</NewName>
+    </renameRefs>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:59:10">
+    <page name="RefWocstatus" />
+    <rename>WOC Status</rename>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:59:26">
+    <page name="Woclists" />
+    <rename>WOC List</rename>
+  </c>
+  <c y="NodeSet" t="2017-09-21T23:59:36">
+    <page name="RefHhcma" />
+    <rename>HHCMA</rename>
+  </c>
+  <c y="NodeSet" t="2017-09-22T00:02:56">
+    <pages />
+    <insert type="page">
+      <Name>Adminstrative</Name>
+      <Url>about:blank</Url>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Path>Adminstrative</Path>
+      <Title>Adminstrative</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2017-09-22T00:03:06">
+    <page name="Adminstrative" />
+    <move>
+      <page name="RefWocstatus" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T00:03:12">
+    <page name="Adminstrative" />
+    <move>
+      <page name="RefHhcma" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2017-09-22T00:03:30">
+    <page name="RefHhcma" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+    </update>
+  </c>
+</log>

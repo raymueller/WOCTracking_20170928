@@ -1,0 +1,674 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataControllerCollection xmlns="urn:schemas-codeontime-com:data-aquarium" snapshot="true">
+  <dataController name="Consents" conflictDetection="overwriteChanges" label="Consents" nativeSchema="dbo" nativeTableName="Consents" generateDataAccessObjects="false">
+    <commands>
+      <command id="command1" type="Text">
+        <text><![CDATA[
+select
+	"Consents"."ConsentID" "ConsentID"
+	,"Consents"."WOCIDFK" "Wocidfk"
+	,"WOCIDFK"."woc_ClientCIN" "WocidfkWocClientcin"
+	,"WOCIDFKwoc_RequestHHCMAfk"."HHCMAMMISpk" "WocidfkwocRequesthhcmafkhhcmammispk"
+	,"WOCIDFKwoc_TargetHHCMAfk"."HHCMAMMISpk" "WocidfkwocTargethhcmafkhhcmammispk"
+	,"WOCIDFKwoc_CurrentStatusFK"."refwoc_StatusName" "WocidfkwocCurrentstatusfkrefwocStatusname"
+	,"Consents"."ConsentFileName" "ConsentFileName"
+	,"Consents"."ConsentLength" "ConsentLength"
+	,"Consents"."ConsentContentType" "ConsentContentType"
+	,"Consents"."ConsentLoadedDate" "ConsentLoadedDate"
+	,"Consents"."Consent" "Consent"
+from "dbo"."Consents" "Consents"
+	left join "dbo"."WOCLists" "WOCIDFK" on "Consents"."WOCIDFK" = "WOCIDFK"."wocRecIDPK"
+	left join "dbo"."ref_HHCMA" "WOCIDFKwoc_RequestHHCMAfk" on "WOCIDFK"."woc_RequestHHCMAfk" = "WOCIDFKwoc_RequestHHCMAfk"."HHCMAIDPK"
+	left join "dbo"."ref_HHCMA" "WOCIDFKwoc_TargetHHCMAfk" on "WOCIDFK"."woc_TargetHHCMAfk" = "WOCIDFKwoc_TargetHHCMAfk"."HHCMAIDPK"
+	left join "dbo"."ref_WOCStatus" "WOCIDFKwoc_CurrentStatusFK" on "WOCIDFK"."woc_CurrentStatusFK" = "WOCIDFKwoc_CurrentStatusFK"."refwocIDPK"
+]]></text>
+      </command>
+      <command id="ConsentIDIdentityCommand" type="Text" event="Inserted">
+        <text><![CDATA[select @@identity]]></text>
+        <output>
+          <fieldOutput fieldName="ConsentID" />
+        </output>
+      </command>
+    </commands>
+    <fields>
+      <field name="ConsentID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Consent ID" readOnly="true" />
+      <field name="Wocidfk" type="Int32" label="Wocidfk" showInSummary="true">
+        <items style="Lookup" dataController="WOCLIST" newDataView="createForm1" dataValueField="WocRecIdpk" dataTextField="WocClientcin" copy="WocidfkwocCurrentstatusfkrefwocStatusname=WocCurrentstatusfkrefwocStatusname" />
+      </field>
+      <field name="WocidfkWocClientcin" type="String" readOnly="true" label="Wocidfk Woc Clientcin" length="8" />
+      <field name="ConsentFileName" type="String" label="Consent File Name" length="255" showInSummary="true" />
+      <field name="ConsentLength" type="Int32" label="Consent Length" showInSummary="true" />
+      <field name="ConsentContentType" type="String" label="Consent Content Type" length="50" showInSummary="true" />
+      <field name="ConsentLoadedDate" type="DateTime" dataFormatString="g" label="Consent Loaded Date" showInSummary="true" />
+      <field name="Consent" type="Byte[]" label="Consent" sourceFields="ConsentID" onDemand="true" onDemandHandler="ConsentAttachmentHandler" onDemandStyle="Thumbnail" />
+    </fields>
+    <views>
+      <view id="grid1" type="Grid" commandId="command1" label="Consents">
+        <headerText>$DefaultGridViewDescription</headerText>
+        <dataFields>
+          <dataField fieldName="Wocidfk" aliasFieldName="WocidfkWocClientcin" />
+          <dataField fieldName="ConsentFileName" />
+          <dataField fieldName="ConsentLength" columns="15" />
+          <dataField fieldName="ConsentContentType" columns="50" />
+          <dataField fieldName="ConsentLoadedDate" columns="20" />
+          <dataField fieldName="Consent" columns="15" />
+        </dataFields>
+      </view>
+      <view id="editForm1" type="Form" commandId="command1" label="Review Consents">
+        <headerText>$DefaultEditViewDescription</headerText>
+        <categories>
+          <category id="c1" headerText="Consents">
+            <description>$DefaultEditDescription</description>
+            <dataFields>
+              <dataField fieldName="Wocidfk" aliasFieldName="WocidfkWocClientcin" />
+              <dataField fieldName="ConsentFileName" />
+              <dataField fieldName="ConsentLength" columns="15" />
+              <dataField fieldName="ConsentContentType" columns="50" />
+              <dataField fieldName="ConsentLoadedDate" columns="20" />
+              <dataField fieldName="Consent" columns="15" />
+            </dataFields>
+          </category>
+        </categories>
+      </view>
+      <view id="createForm1" type="Form" commandId="command1" label="New Consents">
+        <headerText>$DefaultCreateViewDescription</headerText>
+        <categories>
+          <category id="c1" headerText="New Consents">
+            <description>$DefaultNewDescription</description>
+            <dataFields>
+              <dataField fieldName="Wocidfk" aliasFieldName="WocidfkWocClientcin" />
+              <dataField fieldName="ConsentFileName" />
+              <dataField fieldName="ConsentLength" columns="15" />
+              <dataField fieldName="ConsentContentType" columns="50" />
+              <dataField fieldName="ConsentLoadedDate" columns="20" />
+              <dataField fieldName="Consent" columns="15" />
+            </dataFields>
+          </category>
+        </categories>
+      </view>
+    </views>
+    <actions>
+      <actionGroup id="ag1" scope="Grid">
+        <action id="a1" commandName="Select" commandArgument="editForm1" />
+        <action id="a2" commandName="Edit" />
+        <action id="a3" commandName="Delete" />
+        <action id="a6" />
+        <action id="a7" commandName="New" commandArgument="grid1" />
+        <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      </actionGroup>
+      <actionGroup id="ag2" scope="Form">
+        <action id="a1" commandName="Edit" />
+        <action id="a2" commandName="Delete" />
+        <action id="a3" commandName="Cancel" />
+        <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+        <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+        <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+        <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+        <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+        <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+        <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+      </actionGroup>
+      <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+        <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+      </actionGroup>
+      <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+        <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+        <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+      </actionGroup>
+      <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+        <action id="a1" commandName="ExportCsv" />
+        <action id="a2" />
+        <action id="a3" commandName="ExportRowset" />
+        <action id="a4" commandName="ExportRss" />
+        <action id="a5" />
+        <action id="a6" commandName="Import" commandArgument="createForm1" />
+        <action id="a7" commandName="DataSheet" />
+        <action id="a8" commandName="Grid" />
+      </actionGroup>
+      <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+        <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+        <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a3" whenLastCommandName="New" commandName="Insert" />
+        <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+      </actionGroup>
+      <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+        <action id="a1" commandName="ReportAsPdf" />
+        <action id="a2" commandName="ReportAsImage" />
+        <action id="a3" commandName="ReportAsExcel" />
+        <action id="a4" commandName="ReportAsWord" />
+      </actionGroup>
+      <actionGroup id="ag8" scope="Row">
+        <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a6" whenLastCommandName="New" commandName="Insert" />
+        <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+      </actionGroup>
+    </actions>
+    <businessRules>
+      <rule id="r100" commandName="New" type="Sql" phase="Execute" name="OnNew-AddDate">SET @ConsentLoadedDate = GETDATE()</rule>
+    </businessRules>
+    <blobAdapterConfig>Field:Consent
+File_Name-Field:ConsentFileName
+Content-Type-Field:ConsentContentType
+Storage-System:File
+Path-Template:C:\temp\consents\consent-{ConsentFileName}</blobAdapterConfig>
+  </dataController>
+  <dataController name="HHCMA" conflictDetection="overwriteChanges" label="Ref Hhcma" nativeSchema="dbo" nativeTableName="ref_HHCMA">
+    <commands>
+      <command id="command1" type="Text">
+        <text><![CDATA[
+select
+	"ref_HHCMA"."HHCMAIDPK" "Hhcmaidpk"
+	,"ref_HHCMA"."HHCMAMMISpk" "Hhcmammispk"
+	,"ref_HHCMA"."HHCMANAME" "Hhcmaname"
+	,"ref_HHCMA"."HHCNA_InUse" "HhcnaInuse"
+from "dbo"."ref_HHCMA" "ref_HHCMA"
+where HHCNA_InUse = 1
+order by "ref_HHCMA"."HHCMANAME" asc]]></text>
+      </command>
+      <command id="HHCMAIDPKIdentityCommand" type="Text" event="Inserted">
+        <text><![CDATA[select @@identity]]></text>
+        <output>
+          <fieldOutput fieldName="HHCMAIDPK" />
+        </output>
+      </command>
+    </commands>
+    <fields>
+      <field name="Hhcmaidpk" type="Int32" allowNulls="false" isPrimaryKey="true" label="Hhcmaidpk" readOnly="true" />
+      <field name="Hhcmammispk" type="String" allowNulls="false" label="MMIS ID" length="8" showInSummary="true" />
+      <field name="Hhcmaname" type="String" allowNulls="false" label="HH/CMA Name" length="100" showInSummary="true" />
+      <field name="HhcnaInuse" type="Boolean" default="((0))" label="Hhcna Inuse" showInSummary="true" />
+    </fields>
+    <views>
+      <view id="grid1" type="Grid" commandId="command1" label="Ref Hhcma" sortExpression="Hhcmaname asc">
+        <headerText>$DefaultGridViewDescription</headerText>
+        <dataFields>
+          <dataField fieldName="Hhcmammispk" columns="8" />
+          <dataField fieldName="Hhcmaname" />
+          <dataField fieldName="HhcnaInuse" />
+        </dataFields>
+      </view>
+      <view id="editForm1" type="Form" commandId="command1" label="Review Ref Hhcma">
+        <headerText>$DefaultEditViewDescription</headerText>
+        <categories>
+          <category id="c1" headerText="Ref Hhcma">
+            <description>$DefaultEditDescription</description>
+            <dataFields>
+              <dataField fieldName="Hhcmammispk" columns="8" />
+              <dataField fieldName="Hhcmaname" />
+              <dataField fieldName="HhcnaInuse" />
+            </dataFields>
+          </category>
+        </categories>
+      </view>
+      <view id="createForm1" type="Form" commandId="command1" label="New Ref Hhcma">
+        <headerText>$DefaultCreateViewDescription</headerText>
+        <categories>
+          <category id="c1" headerText="New Ref Hhcma">
+            <description>$DefaultNewDescription</description>
+            <dataFields>
+              <dataField fieldName="Hhcmammispk" columns="8" />
+              <dataField fieldName="Hhcmaname" />
+              <dataField fieldName="HhcnaInuse" />
+            </dataFields>
+          </category>
+        </categories>
+      </view>
+    </views>
+    <actions>
+      <actionGroup id="ag1" scope="Grid">
+        <action id="a1" commandName="Select" commandArgument="editForm1" />
+        <action id="a2" commandName="Edit" />
+        <action id="a3" commandName="Delete" />
+        <action id="a6" />
+        <action id="a7" commandName="New" commandArgument="grid1" />
+        <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      </actionGroup>
+      <actionGroup id="ag2" scope="Form">
+        <action id="a1" commandName="Edit" />
+        <action id="a2" commandName="Delete" />
+        <action id="a3" commandName="Cancel" />
+        <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+        <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+        <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+        <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+        <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+        <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+        <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+      </actionGroup>
+      <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+        <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+      </actionGroup>
+      <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+        <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+        <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+      </actionGroup>
+      <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+        <action id="a1" commandName="ExportCsv" />
+        <action id="a2" />
+        <action id="a3" commandName="ExportRowset" />
+        <action id="a4" commandName="ExportRss" />
+        <action id="a5" />
+        <action id="a6" commandName="Import" commandArgument="createForm1" />
+        <action id="a7" commandName="DataSheet" />
+        <action id="a8" commandName="Grid" />
+      </actionGroup>
+      <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+        <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+        <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a3" whenLastCommandName="New" commandName="Insert" />
+        <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+      </actionGroup>
+      <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+        <action id="a1" commandName="ReportAsPdf" />
+        <action id="a2" commandName="ReportAsImage" />
+        <action id="a3" commandName="ReportAsExcel" />
+        <action id="a4" commandName="ReportAsWord" />
+      </actionGroup>
+      <actionGroup id="ag8" scope="Row">
+        <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a6" whenLastCommandName="New" commandName="Insert" />
+        <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+      </actionGroup>
+    </actions>
+  </dataController>
+  <dataController name="STATUS" conflictDetection="overwriteChanges" label="Ref Wocstatus" nativeSchema="dbo" nativeTableName="ref_WOCStatus">
+    <commands>
+      <command id="command1" type="Text">
+        <text><![CDATA[
+select
+	"ref_WOCStatus"."refwocIDPK" "RefwocIdpk"
+	,"ref_WOCStatus"."refwoc_StatusName" "RefwocStatusname"
+from "dbo"."ref_WOCStatus" "ref_WOCStatus"
+order by "ref_WOCStatus"."refwoc_StatusName" asc]]></text>
+      </command>
+      <command id="refwocIDPKIdentityCommand" type="Text" event="Inserted">
+        <text><![CDATA[select @@identity]]></text>
+        <output>
+          <fieldOutput fieldName="refwocIDPK" />
+        </output>
+      </command>
+    </commands>
+    <fields>
+      <field name="RefwocIdpk" type="Int32" allowNulls="false" isPrimaryKey="true" label="refwoc IDPK" readOnly="true" />
+      <field name="RefwocStatusname" type="String" allowNulls="false" label="refwoc Status Name" length="20" showInSummary="true" />
+    </fields>
+    <views>
+      <view id="grid1" type="Grid" commandId="command1" label="Ref Wocstatus" sortExpression="RefwocStatusname asc">
+        <headerText>$DefaultGridViewDescription</headerText>
+        <dataFields>
+          <dataField fieldName="RefwocStatusname" columns="20" />
+        </dataFields>
+      </view>
+      <view id="editForm1" type="Form" commandId="command1" label="Review Ref Wocstatus">
+        <headerText>$DefaultEditViewDescription</headerText>
+        <categories>
+          <category id="c1" headerText="Ref Wocstatus">
+            <description>$DefaultEditDescription</description>
+            <dataFields>
+              <dataField fieldName="RefwocStatusname" columns="20" />
+            </dataFields>
+          </category>
+        </categories>
+      </view>
+      <view id="createForm1" type="Form" commandId="command1" label="New Ref Wocstatus">
+        <headerText>$DefaultCreateViewDescription</headerText>
+        <categories>
+          <category id="c1" headerText="New Ref Wocstatus">
+            <description>$DefaultNewDescription</description>
+            <dataFields>
+              <dataField fieldName="RefwocStatusname" columns="20" />
+            </dataFields>
+          </category>
+        </categories>
+      </view>
+    </views>
+    <actions>
+      <actionGroup id="ag1" scope="Grid">
+        <action id="a1" commandName="Select" commandArgument="editForm1" />
+        <action id="a2" commandName="Edit" />
+        <action id="a3" commandName="Delete" />
+        <action id="a6" />
+        <action id="a7" commandName="New" commandArgument="grid1" />
+        <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      </actionGroup>
+      <actionGroup id="ag2" scope="Form">
+        <action id="a1" commandName="Edit" />
+        <action id="a2" commandName="Delete" />
+        <action id="a3" commandName="Cancel" />
+        <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+        <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+        <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+        <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+        <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+        <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+        <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+      </actionGroup>
+      <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+        <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+      </actionGroup>
+      <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+        <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+        <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+      </actionGroup>
+      <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+        <action id="a1" commandName="ExportCsv" />
+        <action id="a2" />
+        <action id="a3" commandName="ExportRowset" />
+        <action id="a4" commandName="ExportRss" />
+        <action id="a5" />
+        <action id="a6" commandName="Import" commandArgument="createForm1" />
+        <action id="a7" commandName="DataSheet" />
+        <action id="a8" commandName="Grid" />
+      </actionGroup>
+      <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+        <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+        <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a3" whenLastCommandName="New" commandName="Insert" />
+        <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+      </actionGroup>
+      <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+        <action id="a1" commandName="ReportAsPdf" />
+        <action id="a2" commandName="ReportAsImage" />
+        <action id="a3" commandName="ReportAsExcel" />
+        <action id="a4" commandName="ReportAsWord" />
+      </actionGroup>
+      <actionGroup id="ag8" scope="Row">
+        <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a6" whenLastCommandName="New" commandName="Insert" />
+        <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+      </actionGroup>
+    </actions>
+  </dataController>
+  <dataController name="WOCLIST" conflictDetection="overwriteChanges" label="WOCLIST" nativeSchema="dbo" nativeTableName="WOCLists">
+    <commands>
+      <command id="command1" type="Text">
+        <text><![CDATA[
+select
+	"WOCLists"."wocRecIDPK" "WocRecIdpk"
+	,"WOCLists"."woc_CreatedDate" "WocCreateddate"
+	,"WOCLists"."woc_UpdatedOn" "WocUpdatedon"
+	,"WOCLists"."woc_ClientLastName" "WocClientlastname"
+	,"WOCLists"."woc_ClientFirstName" "WocClientfirstname"
+	,"WOCLists"."woc_ClientCIN" "WocClientcin"
+	,"WOCLists"."woc_ClientConsentDate" "WocClientconsentdate"
+	,"WOCLists"."woc_ReceivedDate" "WocReceiveddate"
+	,"WOCLists"."woc_CompletedDate" "WocCompleteddate"
+	,"WOCLists"."woc_CurrentStatusFK" "WocCurrentstatusfk"
+	,"woc_CurrentStatusFK"."refwoc_StatusName" "WocCurrentstatusfkrefwocStatusname"
+	,"WOCLists"."woc_PerformedBy" "WocPerformedby"
+	,"WOCLists"."woc_Comments" "WocComments"
+	,"WOCLists"."woc_SeqID" "WocSeqid"
+	,"WOCLists"."woc_ActionTrackingID" "WocActiontrackingid"
+	,"WOCLists"."woc_RequestHHCMAfk" "WocRequesthhcmafk"
+	,"woc_RequestHHCMAfk"."HHCMANAME" "WocRequesthhcmafkhhcmaname"
+	,"WOCLists"."woc_TargetHHCMAfk" "WocTargethhcmafk"
+	,"woc_TargetHHCMAfk"."HHCMANAME" "WocTargethhcmafkhhcmaname"
+from "dbo"."WOCLists" "WOCLists"
+	left join "dbo"."ref_WOCStatus" "woc_CurrentStatusFK" on "WOCLists"."woc_CurrentStatusFK" = "woc_CurrentStatusFK"."refwocIDPK"
+	left join "dbo"."ref_HHCMA" "woc_RequestHHCMAfk" on "WOCLists"."woc_RequestHHCMAfk" = "woc_RequestHHCMAfk"."HHCMAIDPK"
+	left join "dbo"."ref_HHCMA" "woc_TargetHHCMAfk" on "WOCLists"."woc_TargetHHCMAfk" = "woc_TargetHHCMAfk"."HHCMAIDPK"
+order by "WOCLists"."woc_CreatedDate" asc, "WOCLists"."woc_ClientCIN" asc, "WOCLists"."woc_SeqID" asc]]></text>
+      </command>
+      <command id="wocRecIDPKIdentityCommand" type="Text" event="Inserted">
+        <text><![CDATA[select @@identity]]></text>
+        <output>
+          <fieldOutput fieldName="wocRecIDPK" />
+        </output>
+      </command>
+    </commands>
+    <fields>
+      <field name="WocRecIdpk" type="Int32" allowNulls="false" isPrimaryKey="true" label="WOC ID" readOnly="true" />
+      <field name="WocCreateddate" type="DateTime" allowNulls="false" label="Created Date" showInSummary="true" />
+      <field name="WocUpdatedon" type="DateTime" label="Updated On" showInSummary="true" />
+      <field name="WocClientlastname" type="String" allowNulls="false" label="Client Last Name" length="30" showInSummary="true" calculated="true">
+        <formula />
+        <codeFormula>!String.IsNullOrEmpty(wocClientlastname) ? wocClientlastname.ToUpper() : String.Empty</codeFormula>
+      </field>
+      <field name="WocClientfirstname" type="String" allowNulls="false" label="Client First Name" length="30" showInSummary="true" />
+      <field name="WocClientcin" type="String" allowNulls="false" label="Client CIN" length="8" showInSummary="true" mask="LL99999L" causesCalculate="true" />
+      <field name="WocClientconsentdate" type="DateTime" label="Client Consent Date" />
+      <field name="WocReceiveddate" type="DateTime" allowNulls="false" label="Received Date" />
+      <field name="WocCompleteddate" type="DateTime" label="Completed Date" />
+      <field name="WocCurrentstatusfk" type="Int32" allowNulls="false" label="woc Current Status FK">
+        <items style="Lookup" dataController="STATUS" newDataView="createForm1" dataValueField="RefwocIdpk" dataTextField="RefwocStatusname" />
+      </field>
+      <field name="WocCurrentstatusfkrefwocStatusname" type="String" readOnly="true" label="Current Status" length="20" />
+      <field name="WocPerformedby" type="String" label="Performed By" length="30" />
+      <field name="WocComments" type="String" label="Comments" length="1000" />
+      <field name="WocSeqid" type="String" label="Sequence" length="5" />
+      <field name="WocActiontrackingid" type="Single" label="Tracking ID" length="50" computed="true">
+        <formula>SELECT CONCAT('NFMMC/DOH WOC Request: ', 
+				CONVERT(VARCHAR, YEAR(GETDATE())), 
+				dbo.PadLeft(CONVERT(varchar, MONTH(GETDATE())),'0',2), 
+				dbo.PadLeft(CONVERT(varchar, DAY(GETDATE())),'0',2)
+			 ) 
+				+ dbo.PadLeft(WOCLists.woc_SeqID,'0',5)</formula>
+      </field>
+      <field name="WocRequesthhcmafk" type="Int32" label="Woc Requesthhcmafk">
+        <items style="Lookup" dataController="HHCMA" newDataView="createForm1" dataValueField="Hhcmaidpk" dataTextField="Hhcmaname" />
+      </field>
+      <field name="WocRequesthhcmafkhhcmaname" type="String" readOnly="true" label="Requesting HH/CMA" length="100" />
+      <field name="WocTargethhcmafk" type="Int32" label="Woc Targethhcmafk">
+        <items style="Lookup" dataController="HHCMA" newDataView="createForm1" dataValueField="Hhcmaidpk" dataTextField="Hhcmaname" />
+      </field>
+      <field name="WocTargethhcmafkhhcmaname" type="String" readOnly="true" label="Target HH/CMA" length="100" />
+      <field name="Consents" type="DataView" label="Consents">
+        <dataView controller="Consents" filterFields="Wocidfk" view="grid1" />
+      </field>
+    </fields>
+    <views>
+      <view id="DisplayOpenWOC" type="Grid" commandId="command1" label="Display Active Withdrawal of Consents" sortExpression="WocCreateddate asc, WocClientcin asc, WocSeqid asc" filter="WocCurrentstatusfk NOT IN (3,4)" tags="material-icon-computer">
+        <headerText />
+        <dataFields>
+          <dataField fieldName="WocSeqid" columns="5" />
+          <dataField fieldName="WocCurrentstatusfk" aliasFieldName="WocCurrentstatusfkrefwocStatusname" />
+          <dataField fieldName="WocClientcin" columns="8">
+          </dataField>
+          <dataField fieldName="WocReceiveddate" columns="10" />
+          <dataField fieldName="WocUpdatedon" columns="10" />
+          <dataField fieldName="WocClientlastname" columns="30" />
+          <dataField fieldName="WocRequesthhcmafk" aliasFieldName="WocRequesthhcmafkhhcmaname" />
+          <dataField fieldName="WocTargethhcmafk" aliasFieldName="WocTargethhcmafkhhcmaname" />
+          <dataField fieldName="Consents" columns="15" />
+        </dataFields>
+      </view>
+      <view id="DisplayAllWOC" type="Grid" commandId="command1" label="Display All Withdrawal of Consents" sortExpression="WocCreateddate asc, WocClientcin asc, WocSeqid asc">
+        <headerText />
+        <dataFields>
+          <dataField fieldName="WocSeqid" columns="5" />
+          <dataField fieldName="WocCurrentstatusfk" aliasFieldName="WocCurrentstatusfkrefwocStatusname" />
+          <dataField fieldName="WocReceiveddate" columns="10" />
+          <dataField fieldName="WocUpdatedon" columns="10" />
+          <dataField fieldName="WocClientlastname" columns="30" />
+          <dataField fieldName="WocClientcin" columns="8">
+          </dataField>
+          <dataField fieldName="WocRequesthhcmafk" aliasFieldName="WocRequesthhcmafkhhcmaname" />
+          <dataField fieldName="WocTargethhcmafk" aliasFieldName="WocTargethhcmafkhhcmaname" />
+          <dataField fieldName="Consents" columns="15" />
+        </dataFields>
+      </view>
+      <view id="editForm1" type="Form" commandId="command1" label="Edit Withdrawal of Consent">
+        <headerText />
+        <categories>
+          <category id="c1" headerText="Withdrawal of Consent">
+            <description />
+            <dataFields>
+              <dataField fieldName="WocSeqid" columns="5" textMode="Static">
+              </dataField>
+              <dataField fieldName="WocActiontrackingid" columns="50" textMode="Static">
+              </dataField>
+              <dataField fieldName="WocPerformedby" columns="30" />
+            </dataFields>
+          </category>
+          <category headerText="Request Details" id="c2" flow="NewColumn">
+            <dataFields>
+              <dataField fieldName="WocRequesthhcmafk" aliasFieldName="WocRequesthhcmafkhhcmaname" />
+              <dataField fieldName="WocTargethhcmafk" aliasFieldName="WocTargethhcmafkhhcmaname" />
+              <dataField fieldName="WocCreateddate" columns="10" textMode="Static">
+              </dataField>
+              <dataField fieldName="WocUpdatedon" columns="10" />
+              <dataField fieldName="WocReceiveddate" columns="10" textMode="Static" hidden="true">
+              </dataField>
+              <dataField fieldName="WocCompleteddate" columns="10" />
+              <dataField fieldName="WocCurrentstatusfk" aliasFieldName="WocCurrentstatusfkrefwocStatusname" />
+            </dataFields>
+          </category>
+          <category headerText="Client Detail" flow="NewColumn" id="c3">
+            <dataFields>
+              <dataField fieldName="WocClientcin" columns="8" />
+              <dataField fieldName="WocClientfirstname" columns="30" />
+              <dataField fieldName="WocClientlastname" columns="30" />
+              <dataField fieldName="WocClientconsentdate" columns="10" />
+            </dataFields>
+          </category>
+          <category headerText="Comments" flow="NewRow" id="c4">
+            <dataFields>
+              <dataField fieldName="WocComments">
+              </dataField>
+            </dataFields>
+          </category>
+          <category headerText="Consents &amp; Documents" flow="NewRow" id="c5">
+            <dataFields>
+              <dataField fieldName="Consents" columns="15" />
+            </dataFields>
+          </category>
+        </categories>
+      </view>
+      <view id="createForm1" type="Form" commandId="command1" label="Add New Withdrawal of Consent">
+        <headerText />
+        <categories>
+          <category id="c1" headerText="Withdrawal of Consent">
+            <description>Add New Withdrawal of Consent</description>
+            <dataFields>
+              <dataField fieldName="WocSeqid" columns="5" textMode="Static">
+              </dataField>
+              <dataField fieldName="WocActiontrackingid" columns="50" hidden="true">
+              </dataField>
+              <dataField fieldName="WocPerformedby" columns="30" />
+            </dataFields>
+          </category>
+          <category headerText="Request Details" id="c4" flow="NewColumn">
+            <dataFields>
+              <dataField fieldName="WocRequesthhcmafk" aliasFieldName="WocRequesthhcmafkhhcmaname" />
+              <dataField fieldName="WocTargethhcmafk" aliasFieldName="WocTargethhcmafkhhcmaname" />
+              <dataField fieldName="WocCreateddate" columns="10" hidden="true">
+              </dataField>
+              <dataField fieldName="WocUpdatedon" columns="10" hidden="true">
+              </dataField>
+              <dataField fieldName="WocReceiveddate" columns="10" />
+              <dataField fieldName="WocCompleteddate" columns="10">
+              </dataField>
+              <dataField fieldName="WocCurrentstatusfk" aliasFieldName="WocCurrentstatusfkrefwocStatusname" />
+            </dataFields>
+          </category>
+          <category headerText="Client Detail" id="c3" flow="NewColumn">
+            <dataFields>
+              <dataField fieldName="WocClientlastname" columns="30" />
+              <dataField fieldName="WocClientfirstname" columns="30" />
+              <dataField fieldName="WocClientcin" columns="8" />
+              <dataField fieldName="WocClientconsentdate" columns="10" />
+            </dataFields>
+          </category>
+          <category headerText="Comments" flow="NewRow" id="c2">
+            <dataFields>
+              <dataField fieldName="WocComments">
+              </dataField>
+            </dataFields>
+          </category>
+          <category headerText="Consents &amp; Documents" flow="NewRow" id="c5">
+            <dataFields>
+              <dataField fieldName="Consents" columns="15" />
+            </dataFields>
+          </category>
+        </categories>
+      </view>
+    </views>
+    <actions>
+      <actionGroup id="ag1" scope="Grid">
+        <action id="a1" commandName="Select" commandArgument="editForm1" />
+        <action id="a2" commandName="Edit" />
+        <action id="a3" commandName="Delete" />
+        <action id="a6" />
+        <action id="a7" commandName="New" commandArgument="DisplayOpenWOC" />
+        <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      </actionGroup>
+      <actionGroup id="ag2" scope="Form">
+        <action id="a1" commandName="Edit" />
+        <action id="a2" commandName="Delete" />
+        <action id="a3" commandName="Cancel" />
+        <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+        <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+        <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+        <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+        <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+        <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+        <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+      </actionGroup>
+      <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+        <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+      </actionGroup>
+      <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+        <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="DisplayOpenWOC" />
+        <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="DisplayOpenWOC" />
+      </actionGroup>
+      <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+        <action id="a1" commandName="ExportCsv" />
+        <action id="a2" />
+        <action id="a3" commandName="ExportRowset" />
+        <action id="a4" commandName="ExportRss" />
+        <action id="a5" />
+        <action id="a6" commandName="Import" commandArgument="createForm1" />
+        <action id="a7" commandName="DataSheet" />
+        <action id="a8" commandName="Grid" />
+      </actionGroup>
+      <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+        <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+        <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a3" whenLastCommandName="New" commandName="Insert" />
+        <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+      </actionGroup>
+      <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+        <action id="a1" commandName="ReportAsPdf" />
+        <action id="a2" commandName="ReportAsImage" />
+        <action id="a3" commandName="ReportAsExcel" />
+        <action id="a4" commandName="ReportAsWord" />
+      </actionGroup>
+      <actionGroup id="ag8" scope="Row">
+        <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+        <action id="a6" whenLastCommandName="New" commandName="Insert" />
+        <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+      </actionGroup>
+    </actions>
+    <businessRules>
+      <rule id="r100" commandName="New" type="Sql" phase="Execute" name="OnNew-AddDates">SET @WocCreateddate = GETDATE()
+SET @WocUpdatedon = GETDATE()
+SET @WocReceiveddate = GETDATE()
+</rule>
+      <rule id="r101" commandName="Update" type="Sql" phase="Execute" name="OnUpdate-AddDates">SET @WocUpdatedon = GETDATE()</rule>
+      <rule id="r102" commandName="New" type="Sql" phase="Execute" name="OnNew-GetID">DECLARE	@return_value int,
+		@newMRN varchar(6)
+
+EXEC	@return_value = getNextCount
+		@inApplicationID = 1,
+		@inPADCHAR = N'0',
+		@inPADLENGTH = 5,
+		@newMRN = @newMRN OUTPUT
+
+SET	@WocSeqid = @return_value
+
+</rule>
+    </businessRules>
+  </dataController>
+</dataControllerCollection>
